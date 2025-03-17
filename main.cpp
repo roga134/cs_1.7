@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Gun.h"
 
 using namespace std;
 
