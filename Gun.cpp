@@ -9,7 +9,7 @@ Gun::Gun()
 {
 	Ammo = 0;
 	Price = 0;
-	Id = 0;
+	Id = GenerateGUID();
 	GunName = static_cast<Name>(0);
 	PowerAmmo = 0;
 
@@ -27,11 +27,11 @@ Gun::Gun(Gun& SGun)
 	AllGun++;
 }
 
-Gun::Gun(int SAmmo , int SPrice , int SId , int SName , int SPowerAmmo)
+Gun::Gun(int SAmmo , int SPrice , int SName , int SPowerAmmo)
 {
 	Ammo = SAmmo;
 	Price = SPrice;
-	Id = SId;
+	Id = GenerateGUID();
 	GunName = static_cast<Name>(SName);
 	PowerAmmo = SPowerAmmo;
 
@@ -48,11 +48,6 @@ void Gun::SetAmmo(int SAmmo)
 void Gun::SetPrice(int SPrice)
 {
 	Price = SPrice;
-}
-		
-void Gun::SetId(int SId)
-{
-	Id = SId;
 }
 
 void Gun::SetName(int SName)
@@ -75,7 +70,7 @@ int Gun::GetPrice() const
 	return Price;
 }
 		
-int Gun::GetId() const
+string Gun::GetId() const
 {
 	return Id;
 }
@@ -111,10 +106,6 @@ bool Gun::operator==(Gun& SGun)
 	{
 		return false;
 	}
-	if (Id != SGun.GetId())
-	{
-		return false;
-	}
 	if (GunName != SGun.GunName)
 	{
 		return false;
@@ -136,10 +127,6 @@ bool Gun::operator!=(Gun& SGun)
 	{
 		return true;
 	}
-	if (Id != SGun.GetId())
-	{
-		return true;
-	}
 	if (GunName != SGun.GunName)
 	{
 		return true;
@@ -157,5 +144,5 @@ void Gun::operator=(Gun& SGun)
 	Price = SGun.GetPrice();
 	Id = SGun.GetId();
 	GunName = SGun.GunName;
-	PriceAmmo = SGun.GetPowerAmmo();
+	PowerAmmo = SGun.GetPowerAmmo();
 }
