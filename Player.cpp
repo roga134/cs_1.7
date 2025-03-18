@@ -22,7 +22,7 @@ Player::Player()
 	Money = 0 ;
 }
 
-Player::Player(Player& SPlayer)
+Player::Player(const Player& SPlayer)
 {
 	Id = SPlayer.GetId();
 	Name = SPlayer.GetName();
@@ -85,47 +85,47 @@ void Player::SetMoney(int SMoney)
 	Money = SMoney;
 }
 
-std::string Player::GetId()
+std::string Player::GetId() const
 {
 	return Id;
 }
 
-std::string Player::GetName()
+std::string Player::GetName() const
 {
 	return Name;
 }
 		
-std::string Player::GetIdGun()
+std::string Player::GetIdGun() const
 {
 	return IdGun;
 }
 		
-std::string Player::GetNameGun()
+std::string Player::GetNameGun() const
 {
 	return NameGun;
 }
 		
-int Player::GetHealth()
+int Player::GetHealth() const
 {
 	return Health;
 }
 		
-int Player::GetArmor()
+int Player::GetArmor() const
 {
 	return Armor;
 }
 		
-bool Player::GetAlive()
+bool Player::GetAlive() const
 {
 	return IsAlive;
 }
 
-bool Player::GetIsAI()
+bool Player::GetIsAI() const
 {
 	return IsAI;
 }
 		
-int Player::GetMoney()
+int Player::GetMoney() const
 {
 	return Money;
 }
@@ -196,15 +196,19 @@ bool Player::operator!=(Player& SPlayer)
 	return 0;
 }
 		
-void Player::operator=(Player& SPlayer)
+Player& Player::operator=(const Player& SPlayer) 
 {
-	Id = SPlayer.GetId();
-	Name = SPlayer.GetName();
-	IdGun = SPlayer.GetIdGun();
-	NameGun = SPlayer.GetNameGun();
-	Health = SPlayer.GetHealth() ;
-	Armor = SPlayer.GetArmor() ;
-	IsAlive = SPlayer.GetAlive() ;
-	IsAI = SPlayer.GetIsAI() ;
-	Money = SPlayer.GetMoney() ;
+	if (this != &SPlayer) 
+    {
+        Id = SPlayer.GetId();
+        Name = SPlayer.GetName();
+        IdGun = SPlayer.GetIdGun();
+        NameGun = SPlayer.GetNameGun();
+        Health = SPlayer.GetHealth();
+        Armor = SPlayer.GetArmor();
+        IsAlive = SPlayer.GetAlive();
+        IsAI = SPlayer.GetIsAI();
+        Money = SPlayer.GetMoney();
+    }
+    return *this;
 }

@@ -19,7 +19,7 @@ class Player
 		int Money;
 	public:
 		Player();
-		Player(Player& SPlayer);
+		Player(const Player& SPlayer);
 		Player(std::string SName , std::string SNameGun , int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney);
 		~Player();
 
@@ -31,18 +31,18 @@ class Player
 		void SetIsAI(bool SIsAI);
 		void SetMoney(int SMoney);
 
-		std::string GetId();
-		std::string GetName();
-		std::string GetIdGun();
-		std::string GetNameGun();
-		int GetHealth();
-		int GetArmor();
-		bool GetAlive();
-		bool GetIsAI();
-		int GetMoney();
+		std::string GetId() const;
+		std::string GetName() const;
+		std::string GetIdGun() const;
+		std::string GetNameGun() const;
+		int GetHealth() const;
+		int GetArmor() const;
+		bool GetAlive() const;
+		bool GetIsAI() const;
+		int GetMoney() const;
 
 		bool operator==(Player& SPlayer);
 		bool operator!=(Player& SPlayer);
-		void operator=(Player& SPlayer);
+		Player& operator=(const Player& SPlayer); 
 };
 #endif
