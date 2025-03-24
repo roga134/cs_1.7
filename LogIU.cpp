@@ -88,7 +88,7 @@ void SubmitInfo(LogIU& YourLogIU)
 {
 	ofstream file("informatin.csv", ios::app);
 
-	file << YourLogIU.GetUserName() << "," << YourLogIU.GetName() << "," << sha256(YourLogIU.GetPass()) <<  "," << YourLogIU.GetWinNum() << endl; 
+	file << YourLogIU.GetUserName() << "," << YourLogIU.GetName() << "," << sha256(YourLogIU.GetPass()) <<  "," << YourLogIU.GetWinNum() << "," << -1 << endl; 
 
     file.close();
 }
@@ -138,7 +138,7 @@ bool mainIN(LogIU& YourLogIU)
     {
     	YourLogIU.SetUserName(SYourUserName);
     	YourLogIU.SetName(SYourName);
-    	YourLogIU.SetPass(SYourPass);
+    	YourLogIU.SetPass(YourPass);
     	YourLogIU.SetWinNum(SYourWinNum);
     	return 1;
     }

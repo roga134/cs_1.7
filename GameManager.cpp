@@ -6,13 +6,13 @@ using namespace std;
 	
 GameManager* GameManager::instance = nullptr;
 
-GameManager* GameManager::getInstance()
+GameManager& GameManager::getInstance()
 {
     if (instance == nullptr)
     { 
         instance = new GameManager();
     }
-    return instance;
+    return *instance;
 }
 
 GameManager::GameManager()
@@ -23,7 +23,7 @@ GameManager::GameManager()
 	Name = "map 0";
 }
 
-GameManager::GameManager(std::vector<Player> SPlayerCT , std::vector<Player> SPlayerTR , std::string SName , bool SIsTRWin)
+GameManager::GameManager(std::vector<CT> SPlayerCT , std::vector<Terrorist> SPlayerTR , std::string SName , bool SIsTRWin)
 {
 	PlayerCT = SPlayerCT;
     PlayerTR = SPlayerTR;
@@ -31,12 +31,12 @@ GameManager::GameManager(std::vector<Player> SPlayerCT , std::vector<Player> SPl
 	Name = SName;
 }
 
-void GameManager::SetPlayerTR(std::vector<Player> SPlayerTR)
+void GameManager::SetPlayerTR(std::vector<Terrorist> SPlayerTR)
 {
 	PlayerTR = SPlayerTR;
 }
 
-void GameManager::SetPlayerCT(std::vector<Player> SPlayerCT)
+void GameManager::SetPlayerCT(std::vector<CT> SPlayerCT)
 {
 	PlayerCT = SPlayerCT;
 }
@@ -51,12 +51,12 @@ void GameManager::SetIsTRWin(bool SIsTRWin)
 	IsTRWin = SIsTRWin;
 }
 
-const std::vector<Player>& GameManager::GetPlayerCT()
+const std::vector<CT>& GameManager::GetPlayerCT()
 {
 	return PlayerCT;
 }
 
-const std::vector<Player>& GameManager::GetPlayerTR()
+const std::vector<Terrorist>& GameManager::GetPlayerTR()
 {
 	return PlayerTR;
 }

@@ -1,16 +1,13 @@
 #include <string>
+#include <iostream>
 #include "Player.h"
 
 using namespace std;
 
-struct Player::GunIdStruct
-{
-	GunIdStruct * next;
-	GunIdStruct * prev;
-};
 
 Player::Player()
 {
+	head = nullptr;
 	Id = GenerateGUID();
 	Name = "mmad";
 	IdGun = GenerateGUID();
@@ -35,11 +32,12 @@ Player::Player(const Player& SPlayer)
 	Money = SPlayer.GetMoney() ;
 }
 
-Player::Player(std::string SName , std::string SNameGun , int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney)
+Player::Player(std::string SName , std::string SNameGun , string  SIdGun , int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney)
 {
+	head = nullptr;
 	Id = GenerateGUID();
 	Name = SName;
-	IdGun = GenerateGUID();
+	IdGun = SIdGun;
 	NameGun = SNameGun;
 	Health = SHealth ;
 	Armor = SArmor ;
@@ -48,7 +46,8 @@ Player::Player(std::string SName , std::string SNameGun , int SHealth  , int SAr
 	Money = SMoney ;
 }
 
-Player::~Player(){}
+Player::~Player()
+{}
 
 void Player::SetName(std::string SName)
 {
@@ -211,4 +210,73 @@ Player& Player::operator=(const Player& SPlayer)
         Money = SPlayer.GetMoney();
     }
     return *this;
+}
+
+void Player::insert(string SId)
+{
+	GunIdStruct* newNode = new GunIdStruct{SId, nullptr, nullptr};
+    if (!head) 
+    {
+        head = newNode;
+        head->next = head;
+        head->prev = head;
+    } 
+    else 
+    {
+        GunIdStruct* tail = head->prev;
+        tail->next = newNode;
+        newNode->prev = tail;
+        newNode->next = head;
+        head->prev = newNode;
+    }
+}
+
+void Player::display()
+{
+	int YourChoose;
+
+    GunIdStruct* temp = head;
+
+    if (temp == nullptr)
+    {
+    	cout << "the list is empty " << endl;
+    	return ;
+    }
+
+    cout << "enter 1 to show next and 2 for show prev and 3 for exit : " << endl;
+
+    while(YourChoose != 3)
+    {
+    	cout << temp->id << " ";
+    	cin >> YourChoose;
+    	if (YourChoose == 1 )
+    	{
+    		temp = temp->next;
+    	}
+    	if (YourChoose == 2)
+    	{
+    		temp = temp->prev;
+    	}
+    	if (YourChoose != 1 && YourChoose != 2 && YourChoose != 3)
+    	{
+    		system("clear");
+
+    		cout << "its not correct please try again:" << endl;
+    	}
+    }
+    cout << endl;
+}
+
+std::shared_ptr<Gun> Player::GetGun(std::string id) 
+{
+    GunIdStruct* current = head;
+    while (current != nullptr) 
+    {
+        if (current->id == id) 
+        {
+            return gunDatabase[id];  
+        }
+        current = current->next;
+    }
+    return nullptr;  
 }

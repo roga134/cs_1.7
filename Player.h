@@ -2,11 +2,21 @@
 #define PLAYER_H
 
 #include <string>
+#include <unordered_map>
+#include <memory>
 #include "Guid.h"
+#include "Gun.h"
+
+struct GunIdStruct
+{
+	std::string id;
+	GunIdStruct * next;
+	GunIdStruct * prev;
+};
 
 class Player
 {
-	private:
+	protected:
 		std::string Id;
 		std::string Name;
 		std::string IdGun;
@@ -15,12 +25,12 @@ class Player
 		int Armor;
 		bool IsAlive;
 		bool IsAI;
-		struct GunIdStruct;
+		GunIdStruct* head;
 		int Money;
 	public:
 		Player();
 		Player(const Player& SPlayer);
-		Player(std::string SName , std::string SNameGun , int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney);
+		Player(std::string SName , std::string SNameGun , std::string  SIdGun , int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney);
 		~Player();
 
 		void SetName(std::string SName);
@@ -40,9 +50,14 @@ class Player
 		bool GetAlive() const;
 		bool GetIsAI() const;
 		int GetMoney() const;
+		GunIdStruct* GetHead() { return head; }
 
 		bool operator==(Player& SPlayer);
 		bool operator!=(Player& SPlayer);
 		Player& operator=(const Player& SPlayer); 
+
+		void insert(std::string SId);
+		void display();
+		std::shared_ptr<Gun> GetGun(std::string gunId);
 };
 #endif

@@ -1,7 +1,11 @@
 #include <string>
+#include <unordered_map>
+#include <memory>
 #include "Gun.h"
 
 using namespace std;
+
+std::unordered_map<std::string, std::shared_ptr<Gun>> gunDatabase;
 
 int Gun::AllGun = 0;
 
@@ -81,6 +85,12 @@ string Gun::GetName() const
 	{
 		case ak47:
 			return "AK-47"; 
+		case mwp:
+			return "MWP";
+		case m4:
+			return "M4";
+		case knife:
+			return "knife";
 		default:
 			return "Unknown";
 	}
@@ -96,7 +106,7 @@ int Gun::GetAllGun()
 	return AllGun;
 }
 
-bool Gun::operator==(Gun& SGun)
+bool Gun::operator==(const Gun& SGun)
 {
 	if (Ammo != SGun.GetAmmo())
 	{
@@ -117,7 +127,7 @@ bool Gun::operator==(Gun& SGun)
 	return true;
 }
 
-bool Gun::operator!=(Gun& SGun)
+bool Gun::operator!=(const Gun& SGun)
 {
 	if (Ammo != SGun.GetAmmo())
 	{
@@ -138,11 +148,16 @@ bool Gun::operator!=(Gun& SGun)
 	return false;
 }
 
-void Gun::operator=(Gun& SGun)
+void Gun::operator=(const Gun& SGun)
 {
 	Ammo = SGun.GetAmmo();
 	Price = SGun.GetPrice();
 	Id = SGun.GetId();
 	GunName = SGun.GunName;
 	PowerAmmo = SGun.GetPowerAmmo();
+}
+
+void RegisterGun(std::shared_ptr<Gun> gun)
+{
+    gunDatabase[gun->GetId()] = gun;
 }

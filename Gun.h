@@ -1,7 +1,14 @@
 #ifndef GUN_H
 #define GUN_H
+
 #include <string>
+#include <unordered_map>
+#include <memory>
 #include "Guid.h"
+
+class Gun;
+
+extern std::unordered_map<std::string, std::shared_ptr<Gun>> gunDatabase;  
 
 class Gun
 {
@@ -11,7 +18,10 @@ class Gun
 		std::string Id;
 		enum Name
 		{
-			ak47 = 0
+			ak47 = 0,
+			m4 = 1,
+			mwp = 2,
+			knife = 3
 		}GunName;
 		int PowerAmmo;
 		static int AllGun;
@@ -33,8 +43,11 @@ class Gun
 		int GetPowerAmmo() const;
 		int GetAllGun();
 
-		bool operator==(Gun& SGun);
-		bool operator!=(Gun& SGun);
-		void operator=(Gun& SGun);
+		bool operator==(const Gun& SGun);
+		bool operator!=(const Gun& SGun);
+		void operator=(const Gun& SGun);
 };
+
+void RegisterGun(std::shared_ptr<Gun> gun);
+
 #endif
