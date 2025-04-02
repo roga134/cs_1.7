@@ -1,6 +1,7 @@
 #include <string>
 #include <unordered_map>
 #include <memory>
+#include <stdexcept>
 #include "Gun.h"
 
 using namespace std;
@@ -21,7 +22,20 @@ Gun::Gun()
 }
 
 Gun::Gun(Gun& SGun)
-{
+{	
+	if (SGun.GetAmmo() < 0) 
+	{
+        throw std::invalid_argument("Ammo cannot be negative");
+    }
+    if (SGun.GetPrice() < 0) 
+    {
+        throw std::invalid_argument("Price cannot be negative");
+    }
+    if (SGun.GetPowerAmmo() < 0) 
+    {
+        throw std::invalid_argument("PowerAmmo cannot be negative");
+    }
+
 	Ammo = SGun.GetAmmo();
 	Price = SGun.GetPrice();
 	Id = SGun.GetId();
@@ -32,7 +46,20 @@ Gun::Gun(Gun& SGun)
 }
 
 Gun::Gun(int SAmmo , int SPrice , int SName , int SPowerAmmo)
-{
+{	
+	if (SAmmo < 0) 
+	{
+        throw std::invalid_argument("Ammo cannot be negative");
+    }
+    if (SPrice < 0) 
+    {
+        throw std::invalid_argument("Price cannot be negative");
+    }
+    if (SPowerAmmo < 0) 
+    {
+        throw std::invalid_argument("PowerAmmo cannot be negative");
+    }
+
 	Ammo = SAmmo;
 	Price = SPrice;
 	Id = GenerateGUID();

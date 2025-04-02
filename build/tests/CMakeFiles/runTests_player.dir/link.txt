@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/runTests_player.dir/test_player.cpp.o -o runTests_player  ../libplayer_lib.a -lgtest -lgtest_main 

@@ -161,28 +161,7 @@ int main()
 					vector<Terrorist> SPlayerTR;
 					SPlayerTR.push_back(Terrorist1);
 					SPlayerTR.push_back(Terrorist2);
-
-					int YourTeam;
-					cout << "Please choose your team :(1: tr 2: ct) " ;
-					cin >> YourTeam ;
-
-					if (YourTeam == 1)
-					{
-						Terrorist Terroristyou(0 , 1 , YourLogIU.GetName() , Gun3->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
-						Terroristyou.insert(Gun3->GetId());
-						Terroristyou.insert(Gun1->GetId());
-						SPlayerTR.push_back(Terroristyou);
-						gameSettings.NumTR += 1;
-					}
-					else
-					{
-						CT CTyou(0 , 1 , YourLogIU.GetName() , Gun3->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
-						CTyou.insert(Gun3->GetId());
-						CTyou.insert(Gun1->GetId());
-						SPlayerCT.push_back(CTyou);
-						gameSettings.NumCT += 1;
-					}
-
+				
 					StartGame(YourLogIU , gameSettings , SPlayerCT , SPlayerTR);
 
 					break ;
@@ -264,4 +243,4 @@ int main()
 
 	return 0;
 }
-//g++ $(find . -name "*.cpp") -o main -lssl -lcrypto
+//g++ *cpp -o main -lssl -lcrypto

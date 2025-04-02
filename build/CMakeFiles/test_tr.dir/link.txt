@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/test_tr.dir/tests/test_tr.cpp.o -o test_tr  libCoreLib.a -lpthread /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/x86_64-linux-gnu/libgtest.a 

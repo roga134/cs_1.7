@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/runTests.dir/test_gun.cpp.o -o runTests  ../libgun_lib.a -lgtest -lgtest_main 

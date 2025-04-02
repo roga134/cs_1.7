@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCoreLib.a CMakeFiles/CoreLib.dir/src/Gun.cpp.o CMakeFiles/CoreLib.dir/src/Guid.cpp.o CMakeFiles/CoreLib.dir/src/Player.cpp.o CMakeFiles/CoreLib.dir/src/ct.cpp.o CMakeFiles/CoreLib.dir/src/Terrorist.cpp.o
+/usr/bin/ranlib libCoreLib.a

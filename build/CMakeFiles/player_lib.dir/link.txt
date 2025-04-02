@@ -1,0 +1,2 @@
+/usr/bin/ar qc libplayer_lib.a CMakeFiles/player_lib.dir/src/Player.cpp.o CMakeFiles/player_lib.dir/src/Guid.cpp.o
+/usr/bin/ranlib libplayer_lib.a

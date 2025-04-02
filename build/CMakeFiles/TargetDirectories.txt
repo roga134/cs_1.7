@@ -1,0 +1,6 @@
+/home/roga-134/Desktop/cs17/build/CMakeFiles/CoreLib.dir
+/home/roga-134/Desktop/cs17/build/CMakeFiles/test_Gun.dir
+/home/roga-134/Desktop/cs17/build/CMakeFiles/test_CT.dir
+/home/roga-134/Desktop/cs17/build/CMakeFiles/test_tr.dir
+/home/roga-134/Desktop/cs17/build/CMakeFiles/edit_cache.dir
+/home/roga-134/Desktop/cs17/build/CMakeFiles/rebuild_cache.dir

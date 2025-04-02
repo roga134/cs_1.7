@@ -21,6 +21,19 @@ Player::Player()
 
 Player::Player(const Player& SPlayer)
 {
+    if (SPlayer.GetHealth() < 0) 
+    {
+        throw std::invalid_argument("Health cannot be negative");
+    }
+    if (SPlayer.GetArmor() < 0) 
+    {
+        throw std::invalid_argument("Armor cannot be negative");
+    }
+    if (SPlayer.GetMoney() < 0) 
+    {
+        throw std::invalid_argument("Money cannot be negative");
+    }
+
 	Id = SPlayer.GetId();
 	Name = SPlayer.GetName();
 	IdGun = SPlayer.GetIdGun();
@@ -34,6 +47,19 @@ Player::Player(const Player& SPlayer)
 
 Player::Player(std::string SName , std::string SNameGun , string  SIdGun , int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney)
 {
+    if (SHealth < 0) 
+    {
+        throw std::invalid_argument("Health cannot be negative");
+    }
+    if (SArmor < 0) 
+    {
+        throw std::invalid_argument("Armor cannot be negative");
+    }
+    if (SMoney < 0) 
+    {
+        throw std::invalid_argument("Money cannot be negative");
+    }
+
 	head = nullptr;
 	Id = GenerateGUID();
 	Name = SName;
@@ -61,11 +87,19 @@ void Player::SetNameGun(std::string SNameGun)
 
 void Player::SetHealth(int SHealth)
 {
+	if (SHealth < 0) 
+	{
+        throw std::invalid_argument("Health cannot be negative");
+    }
 	Health = SHealth;
 }
 
 void Player::SetArmor(int SArmor)
 {
+	if (SArmor < 0) 
+	{
+        throw std::invalid_argument("Armor cannot be negative");
+    }
 	Armor = SArmor;
 }
 
@@ -81,6 +115,10 @@ void Player::SetIsAI(bool SIsAI)
 		
 void Player::SetMoney(int SMoney)
 {
+	if (SMoney < 0) 
+	{
+        throw std::invalid_argument("Money cannot be negative");
+    }
 	Money = SMoney;
 }
 
