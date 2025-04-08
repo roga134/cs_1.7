@@ -139,13 +139,43 @@ CMakeFiles/CoreLib.dir/src/Terrorist.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreLib.dir/src/Terrorist.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roga-134/Desktop/cs17/src/Terrorist.cpp -o CMakeFiles/CoreLib.dir/src/Terrorist.cpp.s
 
+CMakeFiles/CoreLib.dir/src/GameMap.cpp.o: CMakeFiles/CoreLib.dir/flags.make
+CMakeFiles/CoreLib.dir/src/GameMap.cpp.o: /home/roga-134/Desktop/cs17/src/GameMap.cpp
+CMakeFiles/CoreLib.dir/src/GameMap.cpp.o: CMakeFiles/CoreLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/roga-134/Desktop/cs17/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CoreLib.dir/src/GameMap.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreLib.dir/src/GameMap.cpp.o -MF CMakeFiles/CoreLib.dir/src/GameMap.cpp.o.d -o CMakeFiles/CoreLib.dir/src/GameMap.cpp.o -c /home/roga-134/Desktop/cs17/src/GameMap.cpp
+
+CMakeFiles/CoreLib.dir/src/GameMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreLib.dir/src/GameMap.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roga-134/Desktop/cs17/src/GameMap.cpp > CMakeFiles/CoreLib.dir/src/GameMap.cpp.i
+
+CMakeFiles/CoreLib.dir/src/GameMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreLib.dir/src/GameMap.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roga-134/Desktop/cs17/src/GameMap.cpp -o CMakeFiles/CoreLib.dir/src/GameMap.cpp.s
+
+CMakeFiles/CoreLib.dir/src/GameManager.cpp.o: CMakeFiles/CoreLib.dir/flags.make
+CMakeFiles/CoreLib.dir/src/GameManager.cpp.o: /home/roga-134/Desktop/cs17/src/GameManager.cpp
+CMakeFiles/CoreLib.dir/src/GameManager.cpp.o: CMakeFiles/CoreLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/roga-134/Desktop/cs17/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CoreLib.dir/src/GameManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreLib.dir/src/GameManager.cpp.o -MF CMakeFiles/CoreLib.dir/src/GameManager.cpp.o.d -o CMakeFiles/CoreLib.dir/src/GameManager.cpp.o -c /home/roga-134/Desktop/cs17/src/GameManager.cpp
+
+CMakeFiles/CoreLib.dir/src/GameManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreLib.dir/src/GameManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roga-134/Desktop/cs17/src/GameManager.cpp > CMakeFiles/CoreLib.dir/src/GameManager.cpp.i
+
+CMakeFiles/CoreLib.dir/src/GameManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreLib.dir/src/GameManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roga-134/Desktop/cs17/src/GameManager.cpp -o CMakeFiles/CoreLib.dir/src/GameManager.cpp.s
+
 # Object files for target CoreLib
 CoreLib_OBJECTS = \
 "CMakeFiles/CoreLib.dir/src/Gun.cpp.o" \
 "CMakeFiles/CoreLib.dir/src/Guid.cpp.o" \
 "CMakeFiles/CoreLib.dir/src/Player.cpp.o" \
 "CMakeFiles/CoreLib.dir/src/ct.cpp.o" \
-"CMakeFiles/CoreLib.dir/src/Terrorist.cpp.o"
+"CMakeFiles/CoreLib.dir/src/Terrorist.cpp.o" \
+"CMakeFiles/CoreLib.dir/src/GameMap.cpp.o" \
+"CMakeFiles/CoreLib.dir/src/GameManager.cpp.o"
 
 # External object files for target CoreLib
 CoreLib_EXTERNAL_OBJECTS =
@@ -155,9 +185,11 @@ libCoreLib.a: CMakeFiles/CoreLib.dir/src/Guid.cpp.o
 libCoreLib.a: CMakeFiles/CoreLib.dir/src/Player.cpp.o
 libCoreLib.a: CMakeFiles/CoreLib.dir/src/ct.cpp.o
 libCoreLib.a: CMakeFiles/CoreLib.dir/src/Terrorist.cpp.o
+libCoreLib.a: CMakeFiles/CoreLib.dir/src/GameMap.cpp.o
+libCoreLib.a: CMakeFiles/CoreLib.dir/src/GameManager.cpp.o
 libCoreLib.a: CMakeFiles/CoreLib.dir/build.make
 libCoreLib.a: CMakeFiles/CoreLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/roga-134/Desktop/cs17/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libCoreLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/roga-134/Desktop/cs17/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libCoreLib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CoreLib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CoreLib.dir/link.txt --verbose=$(VERBOSE)
 

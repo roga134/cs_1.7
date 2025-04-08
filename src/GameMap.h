@@ -1,3 +1,6 @@
+#ifndef GAMEMAP_H
+#define GAMEMAP_H
+
 #include <string>
 
 class GameMap
@@ -24,3 +27,4 @@ class GameMap
 		bool operator!=(GameMap& SGameMap);
 		void operator=(GameMap& SGameMap);
 };
+#endif

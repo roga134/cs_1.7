@@ -27,8 +27,6 @@ int main()
 
 	int flag = 1;
 
-	starting_again:
-
 	LogIU YourLogIU;
 	InfoSetting gameSettings;
 
@@ -54,8 +52,6 @@ int main()
 				system("clear");
 
 				cout << "your log up is successful" << endl;
-
-				goto starting_again;
 
 				break;
 			case 2:
@@ -89,14 +85,14 @@ int main()
 
 
 	cout << "Wellcome " << YourLogIU.GetName() << endl;
-
-	starting_again2:
+	cout << "I have 5 type of test but you should enter 2 for number of tr and ct" << endl; 
 
 	flag = 1;
-	int flag2 = 0;
-
-	while(flag)
+    int flag2 = 0, exit = 1;
+	while(exit)
 	{
+		while(flag)
+		{
 
 		int YourChoose;
 
@@ -119,61 +115,344 @@ int main()
 				{
 					system("clear");
 					
-					shared_ptr<Gun> Gun1 = make_shared<Gun>(60 , 100 , 0 , 14);
-					shared_ptr<Gun> Gun2 = make_shared<Gun>(60 , 200 , 1 , 21);
-					shared_ptr<Gun> Gun3 = make_shared<Gun>(60 , 300 , 2 , 22);
-					shared_ptr<Gun> Gun4 = make_shared<Gun>(60 , 100 , 0 , 20);
-					shared_ptr<Gun> Gun5 = make_shared<Gun>(1 , 50 , 3 , 100);
+					shared_ptr<Gun> Gun1 = make_shared<Gun>(10 , 100 , 0 , 14);
+					shared_ptr<Gun> Gun2 = make_shared<Gun>(10 , 100 , 0 , 15);
+					shared_ptr<Gun> Gun3 = make_shared<Gun>(10 , 100 , 0 , 16);
+					shared_ptr<Gun> Gun4 = make_shared<Gun>(10 , 100 , 0 , 17);
+					shared_ptr<Gun> Gun5 = make_shared<Gun>(5 , 100 , 3 , 50);
+					shared_ptr<Gun> Gun6 = make_shared<Gun>(10 , 100 , 3 , 18);
 					RegisterGun(Gun1);
 					RegisterGun(Gun2);
 					RegisterGun(Gun3);
 					RegisterGun(Gun4);
 					RegisterGun(Gun5);
+					RegisterGun(Gun6);
 
 					gunDatabase[Gun1->GetId()] = Gun1;
     				gunDatabase[Gun2->GetId()] = Gun2;
     				gunDatabase[Gun3->GetId()] = Gun3;
     				gunDatabase[Gun4->GetId()] = Gun4;
     				gunDatabase[Gun5->GetId()] = Gun5;
+    				gunDatabase[Gun6->GetId()] = Gun6;
 
-					Terrorist Terrorist1(0 , 1 , "mahdy" , Gun1->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
-					Terrorist Terrorist2(0 , 0 , "ali" , Gun2->GetName() , Gun2->GetId() ,2000 , 50 , 1 , 0 , gameSettings.AMoney);
+    				int your_test;
+    				cout << "enter number from 1 until 5 for test : " ;
+    				cin >> your_test ;
 
-					Terrorist1.insert(Gun1->GetId());
-					Terrorist1.insert(Gun5->GetId());
+    				vector<CT> SPlayerCT;
+    				vector<Terrorist> SPlayerTR;
 
-					Terrorist2.insert(Gun2->GetId());
-					Terrorist2.insert(Gun5->GetId());
+    					if(your_test == 1) // ct win
+    					{
+    						Terrorist Terrorist1(0 , 1 , "mahdy" , Gun1->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							Terrorist Terrorist2(0 , 0 , "ali" , Gun2->GetName() , Gun2->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
 
-					CT CT1(0 , 1 , "roga" , Gun3->GetName() , Gun3->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
-					CT CT2(0 , 1 , "crazy" , Gun4->GetName() , Gun4->GetId() ,2000 , 30 , 1 , 0 , gameSettings.AMoney);
+							CT CT1(0 , 1 , "roga" , Gun6->GetName() , Gun6->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							CT CT2(0 , 1 , "crazy" , Gun4->GetName() , Gun4->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
 
-					CT1.insert(Gun3->GetId());
-					CT1.insert(Gun5->GetId());
+							Terrorist1.insert(Gun1->GetId());
+							Terrorist1.insert(Gun5->GetId());
 
-					CT2.insert(Gun4->GetId());
-					CT2.insert(Gun5->GetId());
+							Terrorist2.insert(Gun2->GetId());
+							Terrorist2.insert(Gun5->GetId());
+
 					
-					vector<CT> SPlayerCT;
-					SPlayerCT.push_back(CT1);
-					SPlayerCT.push_back(CT2);
+							CT1.insert(Gun6->GetId());
+							CT1.insert(Gun5->GetId());
 
-					vector<Terrorist> SPlayerTR;
-					SPlayerTR.push_back(Terrorist1);
-					SPlayerTR.push_back(Terrorist2);
-				
-					StartGame(YourLogIU , gameSettings , SPlayerCT , SPlayerTR);
+							CT2.insert(Gun4->GetId());
+							CT2.insert(Gun5->GetId());
 
-					break ;
+							SPlayerCT.push_back(CT1);
+							SPlayerCT.push_back(CT2);
+
+							SPlayerTR.push_back(Terrorist1);
+							SPlayerTR.push_back(Terrorist2);
+    					} 
+    					/*
+    					if I get ct :
+    						CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player defeated Terrorist_player
+							CT_player defeated Terrorist_player
+							CT Team Wins
+
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player defeated Terrorist_player
+							CT_player defeated Terrorist_player
+							CT_player defeated Terrorist_player
+							CT Team Wins
+						*/
+
+    					else if(your_test == 2) // if choose tr , draw : tr win  , else , tr : win   
+    					{
+    						Terrorist Terrorist1(0 , 1 , "mahdy" , Gun1->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							Terrorist Terrorist2(0 , 0 , "ali" , Gun6->GetName() , Gun6->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							CT CT1(0 , 1 , "roga" , Gun2->GetName() , Gun2->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							CT CT2(0 , 1 , "crazy" , Gun4->GetName() , Gun4->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							Terrorist1.insert(Gun1->GetId());
+							Terrorist1.insert(Gun5->GetId());
+
+							Terrorist2.insert(Gun6->GetId());
+							Terrorist2.insert(Gun5->GetId());
+
+					
+							CT1.insert(Gun2->GetId());
+							CT1.insert(Gun5->GetId());
+
+							CT2.insert(Gun4->GetId());
+							CT2.insert(Gun5->GetId());
+
+							SPlayerCT.push_back(CT1);
+							SPlayerCT.push_back(CT2);
+
+							SPlayerTR.push_back(Terrorist1);
+							SPlayerTR.push_back(Terrorist2);
+    					} 
+
+    					/*
+    					if I choose ct : 
+    						CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player defeated Terrorist_player
+							Terrorist_player defeated CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player defeated CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player defeated CT_player
+							Terrorist Team Wins
+						if I choose tr :
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player defeated Terrorist_player
+							Terrorist_player defeated CT_player
+							Terrorist_player damaged CT_player
+							No team wins. Both teams have no players left.
+						*/
+
+    					else if(your_test == 3) // ct win
+    					{
+    						Terrorist Terrorist1(0 , 1 , "mahdy" , Gun1->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							Terrorist Terrorist2(0 , 0 , "ali" , Gun2->GetName() , Gun2->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							CT CT1(0 , 1 , "roga" , Gun4->GetName() , Gun4->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							CT CT2(0 , 1 , "crazy" , Gun6->GetName() , Gun6->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							Terrorist1.insert(Gun1->GetId());
+							Terrorist1.insert(Gun5->GetId());
+
+							Terrorist2.insert(Gun2->GetId());
+							Terrorist2.insert(Gun5->GetId());
+
+					
+							CT1.insert(Gun4->GetId());
+							CT1.insert(Gun5->GetId());
+
+							CT2.insert(Gun6->GetId());
+							CT2.insert(Gun5->GetId());
+
+							SPlayerCT.push_back(CT1);
+							SPlayerCT.push_back(CT2);
+
+							SPlayerTR.push_back(Terrorist1);
+							SPlayerTR.push_back(Terrorist2);
+    					}
+    					/*
+    					if I choose ct :
+    						CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player defeated Terrorist_player
+							CT_player defeated Terrorist_player
+							CT Team Wins
+						if I choose tr :
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player damaged Terrorist_player
+							CT_player defeated Terrorist_player
+							CT_player defeated Terrorist_player
+							CT_player defeated Terrorist_player
+							CT Team Wins
+						*/
+
+    					else if(your_test == 4) // if choose tr , tr : win , if choose ct , draw : draw
+    					{
+    						Terrorist Terrorist1(0 , 1 , "mahdy" , Gun6->GetName() , Gun6->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							Terrorist Terrorist2(0 , 0 , "ali" , Gun2->GetName() , Gun2->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							CT CT1(0 , 1 , "roga" , Gun1->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							CT CT2(0 , 1 , "crazy" , Gun4->GetName() , Gun4->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							Terrorist1.insert(Gun6->GetId());
+							Terrorist1.insert(Gun5->GetId());
+
+							Terrorist2.insert(Gun2->GetId());
+							Terrorist2.insert(Gun5->GetId());
+
+					
+							CT1.insert(Gun1->GetId());
+							CT1.insert(Gun5->GetId());
+
+							CT2.insert(Gun4->GetId());
+							CT2.insert(Gun5->GetId());
+
+							SPlayerCT.push_back(CT1);
+							SPlayerCT.push_back(CT2);
+
+							SPlayerTR.push_back(Terrorist1);
+							SPlayerTR.push_back(Terrorist2);
+    					}
+    					/*
+    					if I choose ct :
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player defeated CT_player
+							CT_player defeated Terrorist_player
+							Terrorist_player damaged CT_player
+							No team wins. Both teams have no players left.
+    					if I choose tr :
+    						Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player damaged CT_player
+							CT_player damaged Terrorist_player
+							Terrorist_player defeated CT_player
+							CT_player defeated Terrorist_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player damaged CT_player
+							Terrorist_player defeated CT_player
+							Terrorist Team Wins
+						*/
+
+    					else // its 2
+    					{
+    						Terrorist Terrorist1(0 , 1 , "mahdy" , Gun1->GetName() , Gun1->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							Terrorist Terrorist2(0 , 0 , "ali" , Gun6->GetName() , Gun6->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							CT CT1(0 , 1 , "roga" , Gun2->GetName() , Gun2->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+							CT CT2(0 , 1 , "crazy" , Gun4->GetName() , Gun4->GetId() ,2000 , 0 , 1 , 0 , gameSettings.AMoney);
+
+							Terrorist1.insert(Gun1->GetId());
+							Terrorist1.insert(Gun5->GetId());
+
+							Terrorist2.insert(Gun6->GetId());
+							Terrorist2.insert(Gun5->GetId());
+
+					
+							CT1.insert(Gun2->GetId());
+							CT1.insert(Gun5->GetId());
+
+							CT2.insert(Gun4->GetId());
+							CT2.insert(Gun5->GetId());
+
+							SPlayerCT.push_back(CT1);
+							SPlayerCT.push_back(CT2);
+
+							SPlayerTR.push_back(Terrorist1);
+							SPlayerTR.push_back(Terrorist2);
+    					} 
+
+					int your_team;
+					cout << "please choose your team : (for tr enter one and for ct enter zero) ";
+					cin >> your_team;
+
+					switch (your_team)
+					{
+						case 1:
+						{
+							Terrorist Terrorist3(0 , 1 , YourLogIU.GetName(), Gun3->GetName(), Gun3->GetId(), 100, 0, 1, 0, gameSettings.AMoney);
+							Terrorist3.insert(Gun3->GetId());
+							Terrorist3.insert(Gun5->GetId());
+							SPlayerTR.push_back(Terrorist3);
+							gameSettings.NumTR += 1;
+							break;
+						}
+						case 0:
+						{
+							CT CT3(0 , 1 , YourLogIU.GetName(), Gun3->GetName(), Gun3->GetId(), 2000, 0, 1, 0, gameSettings.AMoney);
+							CT3.insert(Gun3->GetId());
+							CT3.insert(Gun5->GetId());
+							SPlayerCT.push_back(CT3);
+							gameSettings.NumCT += 1;
+							break;
+						}
+						default:
+						{
+							cout << "its not true you are tr" << endl;
+							Terrorist Terrorist3(0 , 1 , YourLogIU.GetName(), Gun3->GetName(), Gun4->GetId(), 2000, 0, 1, 0, gameSettings.AMoney);
+							Terrorist3.insert(Gun4->GetId());
+							Terrorist3.insert(Gun3->GetId());
+							SPlayerTR.push_back(Terrorist3);
+							gameSettings.NumTR += 1;
+							break;
+						}
+					}						
+					StartGame(YourLogIU , gameSettings , SPlayerCT , SPlayerTR , your_team);
+
+					SPlayerTR.clear();
+					SPlayerCT.clear();
+					flag2 = 0;
 				}
 				else 
 				{
 					system("clear");
-
 					cout << "First you should set the setting " << endl;
-
-					break;
 				}
+				break;
 			case 2:
 				system("clear");
 
@@ -240,7 +519,7 @@ int main()
 				break;
 		}
 	}
-
+	}
 	return 0;
 }
 //g++ *cpp -o main -lssl -lcrypto

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "../src/ct.h"
 
-TEST(CTTest, good_input) 
+TEST(CTTest, good_input) // for setting constractor   
 {
     CT ct(0, 1 , "Roga" , "AK_47" , "78f" , 100 , 60 , 1 , 0 , 50);
     EXPECT_EQ(ct.GetName(), "Roga");
@@ -14,22 +14,22 @@ TEST(CTTest, good_input)
     EXPECT_EQ(ct.GetMoney(), 50);
 }
 
-TEST(CTTest, bad_Health) 
+TEST(CTTest, bad_Health) // for negetive input for health
 {
     EXPECT_THROW({CT ct(1 , 0 , "Roga" , "AK_47" , "78f" , -1 , 10 , 1 , 0 , 50);}, std::invalid_argument);
 }
 
-TEST(CTTest, bad_armor) 
+TEST(CTTest, bad_armor) // for negetive input for armor
 {
     EXPECT_THROW({CT ct(1 , 0 , "Roga" , "AK_47" , "78f" , 10 , -1 , 1 , 0 , 50);}, std::invalid_argument);
 }
 
-TEST(CTTest, bad_money) 
+TEST(CTTest, bad_money)  // for negetive input for money 
 {
     EXPECT_THROW({CT ct(1 , 0 , "Roga" , "AK_47" , "78f" , 10 , 60 , 1 , 0 , -1);}, std::invalid_argument);
 }
 
-TEST(CTTest, sen_input) 
+TEST(CTTest, sen_input) // for bad constructor
 {
     CT ct(0, 0 , " " , " " , " " , 0 , 0 , 0 , 0 , 0);
     EXPECT_EQ(ct.GetName(), " ");
@@ -42,7 +42,7 @@ TEST(CTTest, sen_input)
     EXPECT_EQ(ct.GetMoney(), 0);
 }
 
-TEST(CTTest, bool_is) 
+TEST(CTTest, bool_is) // for booling of equaling two object
 {
     CT ct(0, 1 , "Roga" , "AK_47" , "78f" , 100 , 60 , 1 , 0 , 50);
     CT ct2(1, 0 , "Roga" , "AK_47" , "78f" , 10 , 6 , 0 , 0 , 0);
@@ -50,7 +50,7 @@ TEST(CTTest, bool_is)
     EXPECT_EQ(true_bool, 0);
 }
 
-TEST(CTTest, bool_is_not) 
+TEST(CTTest, bool_is_not) // for not booling of equaling two object
 {
     CT ct(0, 1 , "Roga" , "AK_47" , "78f" , 100 , 60 , 1 , 0 , 50);
     CT ct2(1, 0 , "Roga" , "AK_47" , "78f" , 10 , 6 , 0 , 0 , 0);
@@ -58,7 +58,7 @@ TEST(CTTest, bool_is_not)
     EXPECT_EQ(true_bool, 1);
 }
 
-TEST(CTTest, equal) 
+TEST(CTTest, equal) // for equal two object
 {
     CT ct(0, 1 , "Roga" , "AK_47" , "78f" , 100 , 60 , 1 , 0 , 50);
     CT ct2(1, 0 , "Roga" , "AK_47" , "78f" , 10 , 6 , 0 , 0 , 0);
@@ -70,7 +70,7 @@ TEST(CTTest, equal)
     EXPECT_EQ(ct2.GetMoney(), 50);
 }
 
-TEST(CTTest, cu_good_input) 
+TEST(CTTest, cu_good_input) // for copy object
 {
     CT ct2(0, 1 , "Roga" , "AK_47" , "78f" , 100 , 60 , 1 , 0 , 50);
     CT ct(ct2);
@@ -84,19 +84,19 @@ TEST(CTTest, cu_good_input)
     EXPECT_EQ(ct.GetMoney(), 50);
 }
 
-TEST(CTTest, bad_Health_get) 
+TEST(CTTest, bad_Health_get) // for negetive setting input for health
 {
 	CT ct(1 , 0 , "Roga" , "AK_47" , "78f" , 100 , 10 , 1 , 0 , 50);
     EXPECT_THROW(ct.SetHealth(-1), std::invalid_argument);
 }
 
-TEST(CTTest, bad_armor_get) 
+TEST(CTTest, bad_armor_get) // for negetive setting input for armor
 {
 	CT ct(1 , 0 , "Roga" , "AK_47" , "78f" , 100 , 10 , 1 , 0 , 50);
     EXPECT_THROW(ct.SetArmor(-1), std::invalid_argument);
 }
 
-TEST(CTTest, bad_money_get) 
+TEST(CTTest, bad_money_get) // for negetive setting input for money 
 {
 	CT ct(1 , 0 , "Roga" , "AK_47" , "78f" , 100 , 10 , 1 , 0 , 50);
     EXPECT_THROW(ct.SetMoney(-1), std::invalid_argument);

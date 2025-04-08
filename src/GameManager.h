@@ -27,4 +27,6 @@ class GameManager
 		const std::vector<Terrorist>& GetPlayerTR();
 		std::string GetName();
 		bool GetIsTRWin();
+
+		void ResetGame();
 };

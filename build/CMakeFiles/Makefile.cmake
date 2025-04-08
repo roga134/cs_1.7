@@ -62,4 +62,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_Gun.dir/DependInfo.cmake"
   "CMakeFiles/test_CT.dir/DependInfo.cmake"
   "CMakeFiles/test_tr.dir/DependInfo.cmake"
+  "CMakeFiles/test_GM.dir/DependInfo.cmake"
+  "CMakeFiles/test_Gmanager.dir/DependInfo.cmake"
   )

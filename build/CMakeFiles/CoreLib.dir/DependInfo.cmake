@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/roga-134/Desktop/cs17/src/GameManager.cpp" "CMakeFiles/CoreLib.dir/src/GameManager.cpp.o" "gcc" "CMakeFiles/CoreLib.dir/src/GameManager.cpp.o.d"
+  "/home/roga-134/Desktop/cs17/src/GameMap.cpp" "CMakeFiles/CoreLib.dir/src/GameMap.cpp.o" "gcc" "CMakeFiles/CoreLib.dir/src/GameMap.cpp.o.d"
   "/home/roga-134/Desktop/cs17/src/Guid.cpp" "CMakeFiles/CoreLib.dir/src/Guid.cpp.o" "gcc" "CMakeFiles/CoreLib.dir/src/Guid.cpp.o.d"
   "/home/roga-134/Desktop/cs17/src/Gun.cpp" "CMakeFiles/CoreLib.dir/src/Gun.cpp.o" "gcc" "CMakeFiles/CoreLib.dir/src/Gun.cpp.o.d"
   "/home/roga-134/Desktop/cs17/src/Player.cpp" "CMakeFiles/CoreLib.dir/src/Player.cpp.o" "gcc" "CMakeFiles/CoreLib.dir/src/Player.cpp.o.d"

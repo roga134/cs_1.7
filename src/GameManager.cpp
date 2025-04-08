@@ -33,11 +33,13 @@ GameManager::GameManager(std::vector<CT> SPlayerCT , std::vector<Terrorist> SPla
 
 void GameManager::SetPlayerTR(std::vector<Terrorist> SPlayerTR)
 {
+	PlayerTR.clear();
 	PlayerTR = SPlayerTR;
 }
 
 void GameManager::SetPlayerCT(std::vector<CT> SPlayerCT)
 {
+	PlayerCT.clear();
 	PlayerCT = SPlayerCT;
 }
 
@@ -69,4 +71,12 @@ std::string GameManager::GetName()
 bool GameManager::GetIsTRWin()
 {
 	return IsTRWin;
+}
+
+void GameManager::ResetGame()
+{
+    PlayerCT.clear();
+    PlayerTR.clear();
+    IsTRWin = 0;
+    Name = "map 0";
 }

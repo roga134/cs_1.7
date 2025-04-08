@@ -168,6 +168,80 @@ test_tr/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tr.dir/build.make CMakeFiles/test_tr.dir/build
 .PHONY : test_tr/fast
 
+#=============================================================================
+# Target rules for targets named test_GM
+
+# Build rule for target.
+test_GM: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_GM
+.PHONY : test_GM
+
+# fast build rule for target.
+test_GM/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_GM.dir/build.make CMakeFiles/test_GM.dir/build
+.PHONY : test_GM/fast
+
+#=============================================================================
+# Target rules for targets named test_Gmanager
+
+# Build rule for target.
+test_Gmanager: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_Gmanager
+.PHONY : test_Gmanager
+
+# fast build rule for target.
+test_Gmanager/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Gmanager.dir/build.make CMakeFiles/test_Gmanager.dir/build
+.PHONY : test_Gmanager/fast
+
+src/GameManager.o: src/GameManager.cpp.o
+.PHONY : src/GameManager.o
+
+# target to build an object file
+src/GameManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreLib.dir/build.make CMakeFiles/CoreLib.dir/src/GameManager.cpp.o
+.PHONY : src/GameManager.cpp.o
+
+src/GameManager.i: src/GameManager.cpp.i
+.PHONY : src/GameManager.i
+
+# target to preprocess a source file
+src/GameManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreLib.dir/build.make CMakeFiles/CoreLib.dir/src/GameManager.cpp.i
+.PHONY : src/GameManager.cpp.i
+
+src/GameManager.s: src/GameManager.cpp.s
+.PHONY : src/GameManager.s
+
+# target to generate assembly for a file
+src/GameManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreLib.dir/build.make CMakeFiles/CoreLib.dir/src/GameManager.cpp.s
+.PHONY : src/GameManager.cpp.s
+
+src/GameMap.o: src/GameMap.cpp.o
+.PHONY : src/GameMap.o
+
+# target to build an object file
+src/GameMap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreLib.dir/build.make CMakeFiles/CoreLib.dir/src/GameMap.cpp.o
+.PHONY : src/GameMap.cpp.o
+
+src/GameMap.i: src/GameMap.cpp.i
+.PHONY : src/GameMap.i
+
+# target to preprocess a source file
+src/GameMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreLib.dir/build.make CMakeFiles/CoreLib.dir/src/GameMap.cpp.i
+.PHONY : src/GameMap.cpp.i
+
+src/GameMap.s: src/GameMap.cpp.s
+.PHONY : src/GameMap.s
+
+# target to generate assembly for a file
+src/GameMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreLib.dir/build.make CMakeFiles/CoreLib.dir/src/GameMap.cpp.s
+.PHONY : src/GameMap.cpp.s
+
 src/Guid.o: src/Guid.cpp.o
 .PHONY : src/Guid.o
 
@@ -312,6 +386,54 @@ tests/test_CT.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_CT.dir/build.make CMakeFiles/test_CT.dir/tests/test_CT.cpp.s
 .PHONY : tests/test_CT.cpp.s
 
+tests/test_GM.o: tests/test_GM.cpp.o
+.PHONY : tests/test_GM.o
+
+# target to build an object file
+tests/test_GM.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_GM.dir/build.make CMakeFiles/test_GM.dir/tests/test_GM.cpp.o
+.PHONY : tests/test_GM.cpp.o
+
+tests/test_GM.i: tests/test_GM.cpp.i
+.PHONY : tests/test_GM.i
+
+# target to preprocess a source file
+tests/test_GM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_GM.dir/build.make CMakeFiles/test_GM.dir/tests/test_GM.cpp.i
+.PHONY : tests/test_GM.cpp.i
+
+tests/test_GM.s: tests/test_GM.cpp.s
+.PHONY : tests/test_GM.s
+
+# target to generate assembly for a file
+tests/test_GM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_GM.dir/build.make CMakeFiles/test_GM.dir/tests/test_GM.cpp.s
+.PHONY : tests/test_GM.cpp.s
+
+tests/test_Gmanager.o: tests/test_Gmanager.cpp.o
+.PHONY : tests/test_Gmanager.o
+
+# target to build an object file
+tests/test_Gmanager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Gmanager.dir/build.make CMakeFiles/test_Gmanager.dir/tests/test_Gmanager.cpp.o
+.PHONY : tests/test_Gmanager.cpp.o
+
+tests/test_Gmanager.i: tests/test_Gmanager.cpp.i
+.PHONY : tests/test_Gmanager.i
+
+# target to preprocess a source file
+tests/test_Gmanager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Gmanager.dir/build.make CMakeFiles/test_Gmanager.dir/tests/test_Gmanager.cpp.i
+.PHONY : tests/test_Gmanager.cpp.i
+
+tests/test_Gmanager.s: tests/test_Gmanager.cpp.s
+.PHONY : tests/test_Gmanager.s
+
+# target to generate assembly for a file
+tests/test_Gmanager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Gmanager.dir/build.make CMakeFiles/test_Gmanager.dir/tests/test_Gmanager.cpp.s
+.PHONY : tests/test_Gmanager.cpp.s
+
 tests/test_gun.o: tests/test_gun.cpp.o
 .PHONY : tests/test_gun.o
 
@@ -370,8 +492,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... CoreLib"
 	@echo "... test_CT"
+	@echo "... test_GM"
+	@echo "... test_Gmanager"
 	@echo "... test_Gun"
 	@echo "... test_tr"
+	@echo "... src/GameManager.o"
+	@echo "... src/GameManager.i"
+	@echo "... src/GameManager.s"
+	@echo "... src/GameMap.o"
+	@echo "... src/GameMap.i"
+	@echo "... src/GameMap.s"
 	@echo "... src/Guid.o"
 	@echo "... src/Guid.i"
 	@echo "... src/Guid.s"
@@ -390,6 +520,12 @@ help:
 	@echo "... tests/test_CT.o"
 	@echo "... tests/test_CT.i"
 	@echo "... tests/test_CT.s"
+	@echo "... tests/test_GM.o"
+	@echo "... tests/test_GM.i"
+	@echo "... tests/test_GM.s"
+	@echo "... tests/test_Gmanager.o"
+	@echo "... tests/test_Gmanager.i"
+	@echo "... tests/test_Gmanager.s"
 	@echo "... tests/test_gun.o"
 	@echo "... tests/test_gun.i"
 	@echo "... tests/test_gun.s"

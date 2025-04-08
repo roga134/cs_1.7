@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/CoreLib.dir/src/GameManager.cpp.o"
+  "CMakeFiles/CoreLib.dir/src/GameManager.cpp.o.d"
+  "CMakeFiles/CoreLib.dir/src/GameMap.cpp.o"
+  "CMakeFiles/CoreLib.dir/src/GameMap.cpp.o.d"
   "CMakeFiles/CoreLib.dir/src/Guid.cpp.o"
   "CMakeFiles/CoreLib.dir/src/Guid.cpp.o.d"
   "CMakeFiles/CoreLib.dir/src/Gun.cpp.o"

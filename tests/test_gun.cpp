@@ -1,38 +1,38 @@
 #include <gtest/gtest.h>
 #include "../src/Gun.h"
 
-TEST(GunTest, Ammo) 
+TEST(GunTest, Ammo) // for testing get for ammo 
 {
     Gun gun(50, 10 , 2 , 1);
     EXPECT_EQ(gun.GetAmmo(), 50);
 }
 
-TEST(GunTest, Price) 
+TEST(GunTest, Price) // for testing get for price
 {
     Gun gun(50, 10 , 2 , 1);
     EXPECT_EQ(gun.GetPrice(), 10);
 }
 
-TEST(GunTest, name) 
+TEST(GunTest, name) // for testing get for name
 {
     Gun gun(50, 10 , 2 , 1);
     gun.SetName(0);
     EXPECT_EQ(gun.GetName(), "AK-47");
 }
 
-TEST(GunTest, PowerAmmo) 
+TEST(GunTest, PowerAmmo) // for testing get for power ammo
 {
     Gun gun(50, 10 , 2 , 1);
     EXPECT_EQ(gun.GetPowerAmmo(), 1);
 }
 
-TEST(GunTest, number_of_gun) 
+TEST(GunTest, number_of_gun) // for testing get for number of guns
 {
     Gun gun;
     EXPECT_EQ(gun.GetAllGun(), 5);
 }
 
-TEST(GunTest, bool_is) 
+TEST(GunTest, bool_is) // for testing on bool of equal two object 
 {
     Gun gun(50, 10 , 2 , 1);
     Gun gun2(51, 11 , 3 , 4);
@@ -40,7 +40,7 @@ TEST(GunTest, bool_is)
     EXPECT_EQ(it_true, 0);
 }
 
-TEST(GunTest, bool_is_not) 
+TEST(GunTest, bool_is_not) // for testing on bool of not equal two object 
 {
     Gun gun(50, 10 , 2 , 1);
     Gun gun2(51, 11 , 3 , 4);
@@ -48,7 +48,7 @@ TEST(GunTest, bool_is_not)
     EXPECT_EQ(it_true, 1);
 }
 
-TEST(GunTest, is) 
+TEST(GunTest, is) // for testing equal two object 
 {
     Gun gun(50, 10 , 2 , 1);
     Gun gun2(51, 11 , 3 , 4);
@@ -59,24 +59,24 @@ TEST(GunTest, is)
     EXPECT_EQ(gun.GetPowerAmmo(), 4);
 }
 
-TEST(GunTest, bad_name) 
+TEST(GunTest, bad_name) // for testing get for name in bad input with negetive
 {
     Gun gun(50, 10 , 2 , 1);
     gun.SetName(-1);
     EXPECT_EQ(gun.GetName(), "Unknown");
 }
 
-TEST(GunTest, NegativeAmmo) 
+TEST(GunTest, NegativeAmmo) // for testing get for ammo in bad input with negetive
 {
     EXPECT_THROW({Gun gun(-10, 100, 1, 50);}, std::invalid_argument);  
 }
 
-TEST(GunTest, NegativePrice) 
+TEST(GunTest, NegativePrice) // for testing get for price in bad input with negetive
 {
     EXPECT_THROW({Gun gun(10, -100, 1, 50);}, std::invalid_argument);
 }
 
-TEST(GunTest, NegativePowerAmmo) 
+TEST(GunTest, NegativePowerAmmo) // for testing get for power ammo in bad input with negetive
 {
     EXPECT_THROW({Gun gun(10, 100, 1, -50);}, std::invalid_argument);
 }

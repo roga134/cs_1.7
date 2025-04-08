@@ -19,8 +19,22 @@ GameMap::GameMap(GameMap& SGameMap)
 
 GameMap::GameMap(string SName ,string SNameMaker ,bool SIsNight)
 {
-	Name = SName;
-	NameMaker = SNameMaker;
+	if (SName == " " || SName == "")
+	{
+		Name = "map 0";
+	}
+	else
+	{
+		Name = SName;
+	}
+	if (SNameMaker == " " || SNameMaker == "")
+	{
+	 	NameMaker = "roga";
+	} 
+	else
+	{
+		NameMaker = SNameMaker;
+	}
 	IsNight = SIsNight;
 }
 
@@ -28,12 +42,26 @@ GameMap::~GameMap(){}
 
 void GameMap::SetName(string SName)
 {
-	Name = SName;
+	if (SName == " " || SName == "")
+	{
+		Name = "map 0";
+	}
+	else
+	{
+		Name = SName;
+	}
 }
 		
 void GameMap::SetNameMaker(string SNameMaker)
 {
-	NameMaker = SNameMaker;
+	if (SNameMaker == " " || SNameMaker == "")
+	{
+	 	NameMaker = "roga";
+	} 
+	else
+	{
+		NameMaker = SNameMaker;
+	}
 }
 		
 void GameMap::SetIsNight(bool SIsNight)

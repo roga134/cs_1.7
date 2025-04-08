@@ -13,13 +13,16 @@
 
 using namespace std;
 
-void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayerCT , vector<Terrorist> SPlayerTR)
+void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayerCT , vector<Terrorist> SPlayerTR , int your_team)
 {
+	GameMap gamemap(SInfoSetting.Map);
+
 	GameManager& mainGameManager = GameManager::getInstance() ;
 
+	mainGameManager.ResetGame();
 	mainGameManager.SetPlayerTR(SPlayerTR);
 	mainGameManager.SetPlayerCT(SPlayerCT);
-	mainGameManager.SetName(SInfoSetting.MapName);
+	mainGameManager.SetName(gamemap.GetName());
 
 	vector<CT> MainPlayerCT;
 	vector<Terrorist> MainPlayerTR;
@@ -34,15 +37,26 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 	
 	int alivect = 1;
 	int alivetr = 1;
-	int min1 = min(SInfoSetting.NumCT , SInfoSetting.NumTR);
+
+	for (auto& ct : MainPlayerCT) 
+	{
+    	ct.SetIsAlive(1);
+    	ct.SetHealth(2000); 
+	}
+
+	for (auto& tr : MainPlayerTR) 
+	{
+    	tr.SetIsAlive(1);
+    	tr.SetHealth(2000);
+	}
 
 	while(alivect == 1 && alivetr == 1)
 	{
 		int j = 0;
 		int flag_cou = 1;
-		for (int i = 0 ; i != min1 ; ++i , ++j)
+		for (int i = 0 ; i != SInfoSetting.NumCT ; ++i , ++j)
 		{
-			if (j == min1)
+			if (j == SInfoSetting.NumTR)
 			{
 				break ;
 			}
@@ -50,7 +64,7 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 			while((PCT+i)->GetAlive() == 0)
 			{
 				++i;
-				if (i == min1)
+				if (i == SInfoSetting.NumCT)
 				{
 					flag_cou = 0;
 					break;
@@ -60,7 +74,7 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 			while((PTR+j)->GetAlive() == 0)
 			{
 				++j;
-				if (j == min1)
+				if (j == SInfoSetting.NumTR)
 				{
 					flag_cou = 0;
 					break;
@@ -102,7 +116,14 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 
 			if (powerCT > powerTR)
 			{
-				(PTR+j)->SetHealth((PTR+j)->GetHealth() - powerCT);
+				if (((PTR+j)->GetHealth() - powerCT) <= 0)
+				{
+					(PTR+j)->SetHealth(0);
+				}
+				else
+				{
+					(PTR+j)->SetHealth((PTR+j)->GetHealth() - powerCT);
+				}
 
 				if ((PTR+j)->GetHealth() <= 0)
 				{
@@ -116,7 +137,14 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 			}
 			else if (powerCT < powerTR)
 			{
-				(PCT+i)->SetHealth((PCT+i)->GetHealth() - powerTR);
+				if (((PCT+i)->GetHealth() - powerTR) <= 0)
+				{
+					(PCT+i)->SetHealth(0);
+				}
+				else
+				{
+					(PCT+i)->SetHealth((PCT+i)->GetHealth() - powerTR);
+				}
 
 				if ((PCT+i)->GetHealth() <= 0)
 				{
@@ -140,56 +168,38 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 	int winct = 0;
 	int wintr = 0;
 
-	bool yourteam;
-
 	for (int i = 0; i < SInfoSetting.NumCT; ++i)
-	{
-		if ((PCT+i)->GetName() == YourLogIU.GetUserName())
-		{
-			yourteam = 0;
-			break;
-		}
+	{	
+    	if ((PCT+i)->GetAlive())
+    	{
+        	winct = 1;  
+        	break;
+    	}
 	}
 
 	for (int i = 0; i < SInfoSetting.NumTR; ++i)
 	{
-		if ((PTR+i)->GetName() == YourLogIU.GetUserName())
-		{
-			yourteam = 1;
-			break;
-		}
+    	if ((PTR+i)->GetAlive())
+    	{
+        	wintr = 1;  
+        	break;
+    	}
 	}
 
-	for (int i = 0; i < SInfoSetting.NumCT; ++i)
+	if (winct && !wintr) 
 	{
-		if ((PCT+i)->GetAlive())
-		{
-			winct = 1;
-			break;
-		}
-	}
-
-	for (int i = 0; i < SInfoSetting.NumTR; ++i)
+    	cout << "\033[34mCT Team Wins\033[0m" << endl;
+    	mainGameManager.SetIsTRWin(0);  
+	} 
+	else if (wintr && !winct)
 	{
-		if ((PTR+i)->GetAlive())
-		{
-			wintr = 1;
-			break;
-		}
-	}
-
-	if (winct)
+    	cout << "\033[31mTerrorist Team Wins\033[0m" << endl;
+    	mainGameManager.SetIsTRWin(1);  
+	} 
+	else 
 	{
-
-		mainGameManager.SetIsTRWin(0);
-	}
-	else if (wintr)
-	{
-		mainGameManager.SetIsTRWin(1);
-	}
-	else
-	{
-		mainGameManager.SetIsTRWin(0); // because terrorist is bad
+    	cout << "No team wins. Both teams have no players left." << endl;
+    	mainGameManager.SetIsTRWin(0); 
 	}
 
 	ifstream inputFile("informatin.csv");
@@ -211,7 +221,7 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
         {
             if (tokens[i] == "-1" && tokens[0] == YourLogIU.GetUserName() && tokens[1] == YourLogIU.GetName()) 
             {
-            	if (yourteam == mainGameManager.GetIsTRWin())
+            	if (your_team == mainGameManager.GetIsTRWin())
             	{
             		int number = stoi(tokens[3]);
             		number+= 1;
@@ -236,6 +246,9 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
     remove("informatin.csv");      
     rename("temp.csv", "informatin.csv");
 
+    MainPlayerCT.clear();
+    MainPlayerTR.clear();
+
 }
 
 void Info(LogIU& YourLogIU)
@@ -244,7 +257,36 @@ void Info(LogIU& YourLogIU)
 	cout << "User Name :     " << YourLogIU.GetUserName() << endl ;
 	cout << "Name :          " << YourLogIU.GetName() << endl ;
 	cout << "Password :      " << YourLogIU.GetPass() << endl ;
-	cout << "NUmber of win : " << YourLogIU.GetWinNum() << endl ;
+
+	ifstream inputFile("informatin.csv");
+
+	string num_win;
+	string line;
+
+	while (getline(inputFile, line)) 
+	{
+        istringstream ss(line);
+        vector<std::string> tokens;
+        string token;
+        
+        while (std::getline(ss, token, ',')) 
+        {
+            tokens.push_back(token);
+        }
+
+        for (int i = 0; i < 2; ++i) 
+        {
+            if (tokens[0] == YourLogIU.GetUserName() && tokens[1] == YourLogIU.GetName()) 
+            {
+            	num_win = tokens[3];
+                break;
+            }
+        }
+    }
+
+    inputFile.close();
+
+	cout << "NUmber of win : " << num_win << endl ;
 	cout << "\n" ;
 }
 
@@ -256,26 +298,52 @@ void Setting(InfoSetting* SInfoSetting)
 	int flag = 1;
 	int YourMoney;
 
+
+
 	cout << "choose one map : " << endl;
-	cout << "1. Beach" << endl;
-	cout << "2. Dust2" << endl;
-	cout << "3. House" << endl;
-	cout << "4. Cave" << endl;
-	cout << "5. Office" << endl;
+	cout << "1. Beach (day)" << endl;
+	cout << "2. Dust2 (night)" << endl;
+	cout << "3. House (night)" << endl;
+	cout << "4. Cave (day)" << endl;
+	cout << "5. Office (day)" << endl;
 	cout << "Enter : " ;
 	cin >> ChooseMap ;
 
+	GameMap your_Map;
+
 	switch (ChooseMap)
     {
-    case 1: SInfoSetting->MapName = "Beach"; break;
-    case 2: SInfoSetting->MapName = "Dust2"; break;
-    case 3: SInfoSetting->MapName = "House"; break;
-    case 4: SInfoSetting->MapName = "Cave"; break;
-    case 5: SInfoSetting->MapName = "Office"; break;
+    case 1:
+    	your_Map.SetName("Beach");
+    	your_Map.SetNameMaker("roga");
+    	your_Map.SetIsNight(0);
+    	break;
+    case 2: 
+    	your_Map.SetName("Dust2");
+    	your_Map.SetNameMaker("mahdy");
+    	your_Map.SetIsNight(1);
+    	break;
+    case 3: 
+    	your_Map.SetName("House");
+    	your_Map.SetNameMaker("ali");
+    	your_Map.SetIsNight(1);
+    	break;
+    case 4: 
+    	your_Map.SetName("Cave");
+    	your_Map.SetNameMaker("mmad");
+    	your_Map.SetIsNight(0);
+    	break;
+    case 5: 
+    	your_Map.SetName("Office");
+    	your_Map.SetNameMaker("ahmad");
+    	your_Map.SetIsNight(0);
+    	break;
     default:
         cout << "Invalid choice. Defaulting to Beach." << endl;
-        SInfoSetting->MapName = "Beach";
+        break;
     }
+
+    SInfoSetting->Map = your_Map;
 
 	while(flag)
 	{

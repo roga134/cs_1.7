@@ -1,4 +1,7 @@
 #include "Terrorist.h"
+#include <stdexcept>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -10,6 +13,19 @@ Terrorist::Terrorist()
 		
 Terrorist::Terrorist(const Terrorist& STerrorist)
 {
+	if (STerrorist.GetHealth() < 0) 
+	{
+        throw std::invalid_argument("Health cannot be negative");
+    }
+    if (STerrorist.GetArmor() < 0) 
+	{
+        throw std::invalid_argument("Armor cannot be negative");
+    }
+    if (STerrorist.GetMoney() < 0) 
+	{
+        throw std::invalid_argument("Money cannot be negative");
+    }
+
 	IsBoombOn = STerrorist.GetIsBoombOn();
 	HaveBoomb = STerrorist.GetHaveBoomb();
 	Id = STerrorist.GetId();
@@ -35,6 +51,19 @@ Terrorist::Terrorist(const Terrorist& STerrorist)
 		
 Terrorist::Terrorist(bool SIsBoombOn , bool SHaveBoomb , std::string SName , std::string SNameGun , std::string  SIdGun ,int SHealth  , int SArmor , bool SIsAlive , bool SIsAI , int SMoney)
 {
+	if (SHealth < 0) 
+    {
+        throw std::invalid_argument("Health cannot be negative");
+    }
+    if (SArmor < 0) 
+    {
+        throw std::invalid_argument("Armor cannot be negative");
+    }
+    if (SMoney < 0) 
+    {
+        throw std::invalid_argument("Money cannot be negative");
+    }
+
 	IsBoombOn = SIsBoombOn;
 	HaveBoomb = SHaveBoomb;
 	Id = GenerateGUID();
@@ -100,4 +129,23 @@ void Terrorist::operator=(const Terrorist& STerrorist)
 {
 	IsBoombOn = STerrorist.GetIsBoombOn();
 	HaveBoomb = STerrorist.GetHaveBoomb();
+	Id = STerrorist.GetId();
+	Name = STerrorist.GetName();
+	IdGun = STerrorist.GetIdGun();
+	NameGun = STerrorist.GetNameGun();
+	Health = STerrorist.GetHealth() ;
+	Armor = STerrorist.GetArmor() ;
+	IsAlive = STerrorist.GetAlive() ;
+	IsAI = STerrorist.GetIsAI() ;
+	Money = STerrorist.GetMoney() ;
+
+	if (STerrorist.head) 
+	{
+       	GunIdStruct* current = STerrorist.head;
+        do 
+        {
+            insert(current->id);
+            current = current->next;
+        } while (current != STerrorist.head);
+    }
 }
