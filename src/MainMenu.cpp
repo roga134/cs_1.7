@@ -34,39 +34,25 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 	CT* PCT = MainPlayerCT.data();
 	Terrorist* PTR = MainPlayerTR.data();
 	
-	
 	int alivect = 1;
 	int alivetr = 1;
 
-	for (auto& ct : MainPlayerCT) 
-	{
-    	ct.SetIsAlive(1);
-    	ct.SetHealth(2000); 
-	}
-
-	for (auto& tr : MainPlayerTR) 
-	{
-    	tr.SetIsAlive(1);
-    	tr.SetHealth(2000);
-	}
+	int max =  0;
 
 	while(alivect == 1 && alivetr == 1)
 	{
+		++max;
 		int j = 0;
 		int flag_cou = 1;
 		for (int i = 0 ; i != SInfoSetting.NumCT ; ++i , ++j)
 		{
-			if (j == SInfoSetting.NumTR)
-			{
-				break ;
-			}
-
+	
 			while((PCT+i)->GetAlive() == 0)
 			{
 				++i;
 				if (i == SInfoSetting.NumCT)
 				{
-					flag_cou = 0;
+					alivect = 0;
 					break;
 				}
 			}
@@ -76,16 +62,19 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 				++j;
 				if (j == SInfoSetting.NumTR)
 				{
-					flag_cou = 0;
+					alivetr = 0;
 					break;
 				}
 			}
 
-			if (flag_cou == 0)
+			if (j == SInfoSetting.NumTR)
 			{
-				alivect = 0;
-				alivetr = 0;
 				break ;
+			}
+
+			if (i == SInfoSetting.NumCT)
+			{
+				break;
 			}
 
 			int PoweNumber = 0;
@@ -113,6 +102,8 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
         	} while (current2 != (PTR+j)->GetHead());
 
 			int powerTR = (PTR+j)->GetMoney() + PoweNumber;
+
+			//cout << " powe ct : " << powerCT << " power tr : " << powerTR << endl;
 
 			if (powerCT > powerTR)
 			{
@@ -163,35 +154,20 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
 
 			this_thread::sleep_for(std::chrono::milliseconds(500));
 		}
+
+		if(max == 100)
+		{
+    		alivect = 0;
+    		alivetr = 0;
+		}
 	}
 
-	int winct = 0;
-	int wintr = 0;
-
-	for (int i = 0; i < SInfoSetting.NumCT; ++i)
-	{	
-    	if ((PCT+i)->GetAlive())
-    	{
-        	winct = 1;  
-        	break;
-    	}
-	}
-
-	for (int i = 0; i < SInfoSetting.NumTR; ++i)
-	{
-    	if ((PTR+i)->GetAlive())
-    	{
-        	wintr = 1;  
-        	break;
-    	}
-	}
-
-	if (winct && !wintr) 
+	if (alivect && !alivetr) 
 	{
     	cout << "\033[34mCT Team Wins\033[0m" << endl;
     	mainGameManager.SetIsTRWin(0);  
 	} 
-	else if (wintr && !winct)
+	else if (alivetr && !alivect)
 	{
     	cout << "\033[31mTerrorist Team Wins\033[0m" << endl;
     	mainGameManager.SetIsTRWin(1);  
@@ -201,6 +177,7 @@ void StartGame(LogIU& YourLogIU , InfoSetting& SInfoSetting , vector<CT> SPlayer
     	cout << "No team wins. Both teams have no players left." << endl;
     	mainGameManager.SetIsTRWin(0); 
 	}
+
 
 	ifstream inputFile("informatin.csv");
     ofstream outputFile("temp.csv");
@@ -364,6 +341,6 @@ void Setting(InfoSetting* SInfoSetting)
 		}
 	}
 
-	cout << "please enter your first size of money : " ;
+	cout << "please enter your first size of money :(better is more than 100) " ;
 	cin >> SInfoSetting->AMoney ;
 }

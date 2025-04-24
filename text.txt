@@ -1,3 +1,0 @@
-bug in shoing informaion from file not last data
-bug in game 
-test for every of project

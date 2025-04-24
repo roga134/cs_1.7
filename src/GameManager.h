@@ -1,3 +1,6 @@
+#ifndef GAMEMANAGER_H
+#define GAMEMANAGER_H
+
 #include <vector>
 #include <string>
 #include "Player.h"
@@ -30,3 +33,5 @@ class GameManager
 
 		void ResetGame();
 };
+
+#endif
